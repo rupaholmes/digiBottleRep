@@ -22,10 +22,11 @@ namespace PracticeClasses
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            Workouts myWorkouts = new Workouts();
+            var workout = new Workout();
             if(e.KeyCode == System.Windows.Forms.Keys.Enter)
             {
-                myWorkouts.setWorkoutName(textBox1.Text);
+                workout.setWorkoutName(textBox1.Text);
+                userProfile.addWorkout(workout);
             }
         }
 
@@ -33,23 +34,28 @@ namespace PracticeClasses
         {
             string userLastName;
             string userFirstName;
-            ICollection<Workouts> workouts = new List<Workouts>();
+            ICollection<Workout> workouts = new List<Workout>();
             
 
             public void compileWorkoutsList()
             {
-                Workouts myWorkouts = new Workouts();
+                Workout myWorkouts = new Workout();
                 string WorkoutName = "";
                 WorkoutName = myWorkouts.getWorkoutName();
-                workouts.Add((Workouts)WorkoutName);
+                //workouts.Add((Workouts)WorkoutName);
                 //Having problems adding the damn workoutname to this list......
 
+            }
+
+            public void addWorkout(Workout workout)
+            {
+                workouts.Add(workout);
             }
 
 
             
         }
-        public class Workouts
+        public class Workout
         {
             public string workoutName;
             private string workoutdescription;
